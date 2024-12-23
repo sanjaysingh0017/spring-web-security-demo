@@ -19,4 +19,12 @@ public class StudentRepositoryImpl implements StudentRepository{
 //                .setParameter("id", studentId).getResultList();
         return resultList;
     }
+
+    @Override
+    public Integer deleteStudent(String studentId) {
+        Integer numberOfDeletedStudents = entityManager.createNativeQuery("Delete from Student where id='"+studentId+"'", Student.class).executeUpdate();
+//        List<Student> resultList = entityManager.createQuery("Delete from Student where id=:id", Student.class)
+//                .setParameter("id", studentId).getResultList();
+        return numberOfDeletedStudents;
+    }
 }

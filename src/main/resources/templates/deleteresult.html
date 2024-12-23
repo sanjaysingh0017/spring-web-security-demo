@@ -7,10 +7,18 @@
 </head>
 <body>
     <div id="container">
-        <form action="#" th:action="@{/api/student}" method="get">
-            <p>Id: <input type="text" th:name="id"/></p>
-            <p class="buttons"><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form>
+        <table>
+            <thead>
+            <tr>
+                <td>Number of deleted students</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${number}" />
+            </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

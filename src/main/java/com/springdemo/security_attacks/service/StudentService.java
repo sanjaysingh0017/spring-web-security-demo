@@ -16,4 +16,8 @@ public class StudentService {
     public List<Student> getStudent(String id) {
         return repository.findStudent(id);
     }
+
+    public Integer deleteStudent(String id) {
+        return repository.deleteStudent(id);
+    }
 }
