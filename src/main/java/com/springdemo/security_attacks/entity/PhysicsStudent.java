@@ -6,20 +6,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "student")
-public class Student {
-
+@Table(name = "physics_student")
+public class PhysicsStudent {
     @Id
     @Column(name = "id")
-    private String id;
+    private Integer id;
     private Integer marks;
     private String name;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
