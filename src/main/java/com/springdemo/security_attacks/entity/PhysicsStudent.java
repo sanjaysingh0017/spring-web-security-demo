@@ -1,24 +1,24 @@
 package com.springdemo.security_attacks.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.core.annotation.Order;
 
 @Entity
 @Table(name = "physics_student")
 public class PhysicsStudent {
     @Id
     @Column(name = "id")
-    private Integer id;
+    private String id;
+    @Column(name = "marks")
     private Integer marks;
+    @Column(name = "name")
     private String name;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

