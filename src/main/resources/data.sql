@@ -1,9 +1,9 @@
-insert into maths_student (id, marks, name) values ('15b2e389-0039-456b-8ebe-9654844c334c', 98, 'Jim');
-insert into maths_student (id, marks, name) values ('f63b264a-96bd-4a16-ae46-1e75a1e5dcb7', 78, 'Kim');
-insert into maths_student (id, marks, name) values ('87a0312c-1f3f-48c0-9f3b-a5d7c22e903d', 54, 'Mohan');
-insert into maths_student (id, marks, name) values ('a96622f3-8db0-4266-b490-2ca553383238', 36, 'Karen');
+insert into users (id, mobile_number, credit_card_number, name, password, username, enabled)
+values (1001, 7462865738, 9876897654678976, 'Sanjay Singh', '$2a$12$6qscKhRdmPMHAXvrl8shtuRbgrX83v/OBBK5YLEXUu/yceUE7mVIK','sanjay123', 1);
+insert into users (id, mobile_number, credit_card_number, name, password, username, enabled)
+values (1002, 8747354768, 7563859352759674, 'Hacker', '$2a$12$1gotKRGCJuptfp3AAp179.Go0nx.ZS7AWrepVF2nwtwrMv6poiUYm','hacker123', 1);
 
-insert into physics_student (id, marks, name) values (1001, 65, 'Wim');
-insert into physics_student (id, marks, name) values (1002, 23, 'John');
-insert into physics_student (id, marks, name) values (1003, 78, 'Marie');
-insert into physics_student (id, marks, name) values (1004, 89, 'Sam');
+INSERT INTO authorities (username, authority)
+  values ('sanjay123', 'ROLE_USER');
+INSERT INTO authorities (username, authority)
+    values ('hacker123', 'ROLE_USER');
