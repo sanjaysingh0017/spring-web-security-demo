@@ -6,8 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
@@ -53,10 +55,12 @@ public class LoginSecurityConfig {
 
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.headers(headers ->
-//                headers.contentSecurityPolicy(
-//                        cps -> cps.policyDirectives("script-src 'self'")
-//                ));
+//        http.headers(httpSecurityHeadersConfigurer -> {
+//            httpSecurityHeadersConfigurer.contentSecurityPolicy(contentSecurityPolicyConfig -> {
+//                contentSecurityPolicyConfig.policyDirectives("script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net");
+//            });
+//        });
 //        return http.build();
 //    }
+
 }

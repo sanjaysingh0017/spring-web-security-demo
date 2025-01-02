@@ -292,7 +292,7 @@
                     <div class="swiper-slide">
                       <div class="row banner-content p-5">
                         <div class="content-wrapper col-md-12">
-                          <h3 class="display-4">No result found for: <span id="searchData"> ${searchParam}</span> </h3>
+                          <h3 class="display-4" style=${searchParam}>No result found for: <span id="searchData"> ${searchParam}</span> </h3>
                         </div>
                       </div>
                     </div>
