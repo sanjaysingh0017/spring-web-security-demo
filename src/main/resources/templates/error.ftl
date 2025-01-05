@@ -9,9 +9,6 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <meta name="_csrf" content="${_csrf.token}"/>
-	<!-- default header name is X-CSRF-TOKEN -->
-	<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -295,7 +292,7 @@
                     <div class="swiper-slide">
                       <div class="row banner-content p-5">
                         <div class="content-wrapper col-md-12">
-                          <h3 class="display-4" style=${searchParam}>No result found for: <span id="searchData"> ${searchParam}</span> </h3>
+                          <h3 class="display-4">Something went wrong.</h3>
                         </div>
                       </div>
                     </div>

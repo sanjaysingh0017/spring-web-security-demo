@@ -171,7 +171,6 @@
                     "mobileNumber": mobileNumber,
                     "creditCardNumber":creditCardNumber,
                 }
-                console.log(token);
                 $.ajaxSetup({
                    headers:{
                     'X-CSRF-TOKEN': token
