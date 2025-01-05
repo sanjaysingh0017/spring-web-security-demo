@@ -64,10 +64,24 @@ public class LoginSecurityConfig {
 //        return repository;
 //    }
 
+
+    //X-Frame-Options: deny
+    //X-Frame-Options: sameorigin
+    //X-Frame-Options: allow-from https://normal-website.com
+
+    //Content-Security-Policy: frame-ancestors 'none';
+    //Content-Security-Policy: frame-ancestors 'self';
+    //Content-Security-Policy: frame-ancestors normal-website.com;
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
+                .headers(httpSecurityHeadersConfigurer ->
+                    httpSecurityHeadersConfigurer.frameOptions(frameOptionsConfig -> frameOptionsConfig.disable()))
                 // ...
+//                .headers(httpSecurityHeadersConfigurer ->
+//                        httpSecurityHeadersConfigurer.contentSecurityPolicy(contentSecurityPolicyConfig -> {
+//                    contentSecurityPolicyConfig.policyDirectives("frame-ancestors 'none'");
+//                }))
                 .csrf(AbstractHttpConfigurer::disable).
                 formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.loginProcessingUrl("/login"))
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->

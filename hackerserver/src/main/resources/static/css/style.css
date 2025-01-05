@@ -254,6 +254,7 @@ body {
 body {
   letter-spacing: 0.03em;
   display: flex;
+  flex-direction: column;
   height: 100vh;
   background-image: url("../images/background.jpg");
 }
