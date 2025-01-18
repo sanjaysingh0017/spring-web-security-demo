@@ -1,23 +1,28 @@
 package com.springdemo.security_attacks.config;
 
+import com.giffing.bucket4j.spring.boot.starter.config.cache.SyncCacheResolver;
+import com.giffing.bucket4j.spring.boot.starter.config.cache.jcache.JCacheCacheResolver;
+import com.github.benmanes.caffeine.jcache.configuration.CaffeineConfiguration;
 import com.springdemo.security_attacks.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.*;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
+import javax.cache.CacheManager;
+import javax.cache.Caching;
+import javax.cache.spi.CachingProvider;
 import javax.sql.DataSource;
+import java.time.Duration;
+import java.util.OptionalLong;
 
 @Configuration
 public class LoginSecurityConfig {
@@ -90,6 +95,18 @@ public class LoginSecurityConfig {
                 ;
         return http.build();
     }
+
+    @Bean
+    public SyncCacheResolver bucket4jCacheResolver() {
+        final CachingProvider cachingProvider = Caching.getCachingProvider();
+        CaffeineConfiguration<Object, Object> configuration = new CaffeineConfiguration<>();
+        configuration.setExpireAfterWrite(OptionalLong.of(Duration.ofHours(1).toNanos()));
+        configuration.setMaximumSize(OptionalLong.of(1000000));
+        CacheManager cacheManager = cachingProvider.getCacheManager();
+        cacheManager.createCache("rateLimiting", configuration);
+        return new JCacheCacheResolver(cacheManager);
+    }
+
 
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

@@ -3,6 +3,7 @@ package com.springdemo.security_attacks.dto;
 import com.springdemo.security_attacks.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
