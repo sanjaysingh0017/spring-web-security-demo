@@ -1,6 +1,6 @@
 <html lang="en">
     <head>
-        <title>Download Free Softwares</title>
+        <title>Hacker Server</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +16,12 @@
 
     </head>
     <body>
-            <iframe src="http://localhost:8080" height="100%" width="100%" style="opacity:1;"> </iframe>
-            <div class="container-fluid">
-                <button type="submit" class="btn btn-primary">Click</button>
-            </div>
+        <div class="container-fluid">
+           <button id="submit" class="btn btn-primary">Click</button>
+        </div>
+        <div id="responseHtml">
+
+        </div>
         <script src="js/jquery-1.11.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

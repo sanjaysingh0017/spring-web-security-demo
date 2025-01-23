@@ -33,17 +33,10 @@ public class ProfileController {
 
     @GetMapping("/profile")
     @ResponseBody
-    //@TimeLimiter(name = "timelimit")
-    public CompletableFuture<ResponseEntity<?>> getProfile(Authentication authentication) {
+    public ResponseEntity<User> getProfile(Authentication authentication) {
 
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                CustomUserDetails  userDetails = (CustomUserDetails) authentication.getPrincipal();
-                return ResponseEntity.ok(userDetails.getUser());
-            } catch (Exception e) {
-                throw new RuntimeException("Error while fetching all items from the database");
-            }
-        });
+        CustomUserDetails  userDetails = (CustomUserDetails) authentication.getPrincipal();
+        return ResponseEntity.ok(userDetails.getUser());
     }
 
 //    @PostMapping(value = "/profile", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -64,14 +57,6 @@ public class ProfileController {
             return "redirect:/";
         }
         return "redirect:/error";
-    }
-
-    @GetMapping()
-    public void test(@RequestParam Integer input) { //input = 123456789;
-        int arr[] = new int[input];
-        for(int i=0; i<= arr.length;i++) {
-            System.out.println(arr[i]);
-        }
     }
 
 }

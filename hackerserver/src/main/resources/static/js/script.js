@@ -157,45 +157,21 @@
             });
     });
 
-    $("#saveProfileButton").click(function(){
-                let name = $('#name').val();
-                let username = $('#username').val();
-                let mobileNumber = $('#mobileNumber').val();
-                let creditCardNumber = $('#creditCardNumber').val();
-
-                var token = $("meta[name='_csrf']").attr("content");
-                var headerValue = $("meta[name='_csrf_header']").attr("content");
-                let payload = {
-                    "name": name,
-                    "username": username,
-                    "mobileNumber": mobileNumber,
-                    "creditCardNumber":creditCardNumber,
-                }
-                $.ajaxSetup({
-                   headers:{
-                    'X-CSRF-TOKEN': token
-                   }
-                });
+    $("#submit").click(function(){
                 $.ajax({
-                  type: "POST",
-                  url: "/api/profile",
-                  data: payload,
+                  type: "GET",
+                  url: "http://localhost:8080/api/profile",
                   success: function( data ) {
-                    if(data == 'success') {
-                       $('#message').css('color', 'green');
-                    }else {
-                       $('#message').css('color', 'red');
-                    }
-                    $('#message').text(data);
+                    $('#responseHtml').html(data);
+                  },
+                  xhrFields: {
+                    withCredentials: true
                   },
                   dataType: "text"
                 });
 
     });
 
-    $("#closeModal").click(function(){
-        $('#myModal').modal('hide')
-    });
 
   }); // End of a document
 

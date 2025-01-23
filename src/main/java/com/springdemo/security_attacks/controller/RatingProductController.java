@@ -15,4 +15,9 @@ public class RatingProductController {
         log.info("Rating received from user : " + rating);
         return rating;
     }
+
+    @GetMapping("/data")
+    public String data() {
+        return "Data for another website";
+    }
 }

@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
@@ -22,6 +23,8 @@ import javax.cache.Caching;
 import javax.cache.spi.CachingProvider;
 import javax.sql.DataSource;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 import java.util.OptionalLong;
 
 @Configuration
@@ -80,15 +83,16 @@ public class LoginSecurityConfig {
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
-                .headers(httpSecurityHeadersConfigurer ->
-                    httpSecurityHeadersConfigurer.frameOptions(frameOptionsConfig -> frameOptionsConfig.disable()))
-                // ...
-//                .headers(httpSecurityHeadersConfigurer ->
-//                        httpSecurityHeadersConfigurer.contentSecurityPolicy(contentSecurityPolicyConfig -> {
-//                    contentSecurityPolicyConfig.policyDirectives("frame-ancestors 'none'");
-//                }))
-                .csrf(AbstractHttpConfigurer::disable).
-                formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.loginProcessingUrl("/login"))
+                .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.
+                        configurationSource(request -> {
+                            CorsConfiguration configuration = new CorsConfiguration();
+                            configuration.setAllowedOrigins(List.of("http://localhost:8081"));
+                            configuration.setAllowedMethods(List.of("*"));
+                            configuration.setAllowedHeaders(List.of("*"));
+                            configuration.setAllowCredentials(true);
+                            return configuration;
+                }))
+                .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.loginProcessingUrl("/login"))
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry.requestMatchers("/login").permitAll()
                                 .anyRequest().authenticated())
